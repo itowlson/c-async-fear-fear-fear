@@ -5,10 +5,11 @@
 
 #define RT_STATE_INITING 0
 #define RT_STATE_WAITING_FOR_WRITE 1
-#define RT_STATE_WROTE 2
+#define RT_STATE_WAITING_FOR_TIMER 2
 
 struct respond_task {
     uint32_t state;
+    uint32_t count;
     http_trigger_waitable_set_t set;
     // wasi_http_0_3_0_rc_2026_03_15_types_tuple2_stream_u8_future_result_option_own_trailers_error_code_t body;
     wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_writer_t body_writer;
@@ -18,7 +19,6 @@ struct respond_task {
 http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handle(exports_wasi_http_0_3_0_rc_2026_03_15_handler_own_request_t request) {
     struct respond_task* task = (struct respond_task*)malloc(sizeof(struct respond_task));
     memset(task, 0, sizeof(struct respond_task));
-    task->set = http_trigger_waitable_set_new();
     task->state = RT_STATE_INITING;
 
     printf("in handler\n");
@@ -68,6 +68,7 @@ http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handl
     http_trigger_string_t body_text;
     http_trigger_string_set(&body_text, "HELLO WORLD!!!\n");
     http_trigger_waitable_status_t st = wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_write(task->body_writer, body_text.ptr, body_text.len);
+    task->set = http_trigger_waitable_set_new();
     http_trigger_waitable_join(task->body_writer, task->set);
     task->state = RT_STATE_WAITING_FOR_WRITE;
 
@@ -82,15 +83,76 @@ http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handl
 http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handle_callback(http_trigger_event_t *event) {
     struct respond_task *task = (struct respond_task*) http_trigger_context_get_0();
 
-    // if (task->state == RT_STATE_INITING) {
-    //     http_trigger_string_t body_text;
-    //     http_trigger_string_set(&body_text, "HELLO WORLD!!!\n");
-    //     http_trigger_waitable_status_t st = wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_write(task->body_writer, body_text.ptr, body_text.len);
-    //     http_trigger_waitable_join(task->body_writer, task->set);
-    //     task->state = RT_STATE_WAITING_FOR_WRITE;
-    //     return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
-    // }
     printf("in callback\n");
+    fflush(stdout);
+
+    if (task->state == RT_STATE_WAITING_FOR_WRITE) {
+        ++task->count;
+
+        if (task->count >= 5) {
+            printf("writed, DONEBURGER\n");
+            fflush(stdout);
+
+            wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_drop_writable(task->body_writer);
+
+            http_trigger_waitable_set_drop(task->set);
+            task->set = 0;
+
+            free(task);
+
+            return HTTP_TRIGGER_CALLBACK_CODE_EXIT;
+        }
+
+        printf("writed, setting timer\n");
+        fflush(stdout);
+
+        wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_duration_t how_long = 1 * 1000 * 1000 * 1000;  // 1 sec
+        http_trigger_subtask_status_t delay_st = wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_wait_for(how_long);
+        http_trigger_subtask_t delay_task = HTTP_TRIGGER_SUBTASK_HANDLE(delay_st);
+        task->set = http_trigger_waitable_set_new();
+        http_trigger_waitable_join(delay_task, task->set);
+        task->state = RT_STATE_WAITING_FOR_TIMER;
+
+        // okay this seems to block on the waitable set but I dunno if that's what we want
+        // the issue we have is more that write completion doesn't bring us back to the timer
+        //
+        // although I guess with this and a similar thing on the writer perhaps we can alternate
+        // between them which is a bit of a fiddle but maybe acceptable for this learning
+        //
+        // printf("waitable_set_wait...\n");
+        // fflush(stdout);
+        // http_trigger_event_t evt;
+        // http_trigger_waitable_set_wait(task->set, &evt);
+        // printf("...retd\n");
+        // fflush(stdout);
+
+        // http_trigger_context_set_0(task);
+
+        printf("waity time T\n");
+        fflush(stdout);
+
+        return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
+    } else {
+        // task->state == RT_STATE_WAITING_FOR_TIMER
+        printf("timered, writing\n");
+        fflush(stdout);
+
+        http_trigger_string_t body_text;
+        http_trigger_string_set(&body_text, "HELLO AGAIN!!!\n");
+        http_trigger_waitable_status_t st = wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_write(task->body_writer, body_text.ptr, body_text.len);
+        task->set = http_trigger_waitable_set_new();
+        http_trigger_waitable_join(task->body_writer, task->set); // passing `st` results in instant completion so it's not that
+        task->state = RT_STATE_WAITING_FOR_WRITE;
+
+        // http_trigger_context_set_0(task);
+
+        printf("waity time W\n");
+        fflush(stdout);
+
+        return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
+    }
+
+    printf("woe\n");
     fflush(stdout);
 
     wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_drop_writable(task->body_writer);
@@ -101,4 +163,5 @@ http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handl
     free(task);
 
     return HTTP_TRIGGER_CALLBACK_CODE_EXIT;
+
 }
