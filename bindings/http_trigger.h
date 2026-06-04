@@ -476,12 +476,12 @@ typedef struct {
 typedef struct {
   wasi_http_0_2_6_types_field_name_t f0;
   wasi_http_0_2_6_types_field_value_t f1;
-} http_trigger_tuple2_field_name_field_value_t;
+} wasi_http_0_2_6_types_tuple2_field_name_field_value_t;
 
 typedef struct {
-  http_trigger_tuple2_field_name_field_value_t *ptr;
+  wasi_http_0_2_6_types_tuple2_field_name_field_value_t *ptr;
   size_t len;
-} http_trigger_list_tuple2_field_name_field_value_t;
+} wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t;
 
 typedef struct {
   bool is_err;
@@ -494,7 +494,7 @@ typedef struct {
 typedef struct {
   wasi_http_0_2_6_types_field_value_t *ptr;
   size_t len;
-} http_trigger_list_field_value_t;
+} wasi_http_0_2_6_types_list_field_value_t;
 
 typedef struct {
   bool is_err;
@@ -531,7 +531,7 @@ typedef struct {
 typedef struct {
   bool is_some;
   wasi_http_0_2_6_types_duration_t val;
-} http_trigger_option_duration_t;
+} wasi_http_0_2_6_types_option_duration_t;
 
 typedef struct {
   bool is_err;
@@ -867,12 +867,27 @@ typedef struct wasi_http_0_3_0_rc_2026_03_15_types_borrow_response_t {
 } wasi_http_0_3_0_rc_2026_03_15_types_borrow_response_t;
 
 typedef struct {
+  wasi_http_0_3_0_rc_2026_03_15_types_field_name_t f0;
+  wasi_http_0_3_0_rc_2026_03_15_types_field_value_t f1;
+} wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t;
+
+typedef struct {
+  wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t *ptr;
+  size_t len;
+} wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t;
+
+typedef struct {
   bool is_err;
   union {
     wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t ok;
     wasi_http_0_3_0_rc_2026_03_15_types_header_error_t err;
   } val;
 } wasi_http_0_3_0_rc_2026_03_15_types_result_own_fields_header_error_t;
+
+typedef struct {
+  wasi_http_0_3_0_rc_2026_03_15_types_field_value_t *ptr;
+  size_t len;
+} wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t;
 
 typedef struct {
   bool is_err;
@@ -884,7 +899,7 @@ typedef struct {
 typedef struct {
   bool is_err;
   union {
-    http_trigger_list_field_value_t ok;
+    wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t ok;
     wasi_http_0_3_0_rc_2026_03_15_types_header_error_t err;
   } val;
 } wasi_http_0_3_0_rc_2026_03_15_types_result_list_field_value_header_error_t;
@@ -947,6 +962,11 @@ typedef struct {
   wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_t f0;
   wasi_http_0_3_0_rc_2026_03_15_types_future_result_option_own_trailers_error_code_t f1;
 } wasi_http_0_3_0_rc_2026_03_15_types_tuple2_stream_u8_future_result_option_own_trailers_error_code_t;
+
+typedef struct {
+  bool is_some;
+  wasi_http_0_3_0_rc_2026_03_15_types_duration_t val;
+} wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t;
 
 typedef struct {
   bool is_err;
@@ -1982,12 +2002,12 @@ typedef struct {
 typedef struct {
   bool is_some;
   spin_redis_redis_payload_t val;
-} http_trigger_option_payload_t;
+} spin_redis_redis_option_payload_t;
 
 typedef struct {
   bool is_err;
   union {
-    http_trigger_option_payload_t ok;
+    spin_redis_redis_option_payload_t ok;
     spin_redis_redis_error_t err;
   } val;
 } spin_redis_redis_result_option_payload_error_t;
@@ -4365,12 +4385,12 @@ typedef struct {
 typedef struct {
   wasi_http_0_2_0_types_field_key_t f0;
   wasi_http_0_2_0_types_field_value_t f1;
-} http_trigger_tuple2_field_key_field_value_t;
+} wasi_http_0_2_0_types_tuple2_field_key_field_value_t;
 
 typedef struct {
-  http_trigger_tuple2_field_key_field_value_t *ptr;
+  wasi_http_0_2_0_types_tuple2_field_key_field_value_t *ptr;
   size_t len;
-} http_trigger_list_tuple2_field_key_field_value_t;
+} wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t;
 
 typedef struct {
   bool is_err;
@@ -4379,6 +4399,11 @@ typedef struct {
     wasi_http_0_2_0_types_header_error_t err;
   } val;
 } wasi_http_0_2_0_types_result_own_fields_header_error_t;
+
+typedef struct {
+  wasi_http_0_2_0_types_field_value_t *ptr;
+  size_t len;
+} wasi_http_0_2_0_types_list_field_value_t;
 
 typedef struct {
   bool is_err;
@@ -4411,6 +4436,11 @@ typedef struct {
 typedef struct {
   bool is_err;
 } wasi_http_0_2_0_types_result_void_void_t;
+
+typedef struct {
+  bool is_some;
+  wasi_http_0_2_0_types_duration_t val;
+} wasi_http_0_2_0_types_option_duration_t;
 
 typedef struct {
   bool is_err;
@@ -4688,9 +4718,14 @@ typedef struct {
 } fermyon_spin_2_0_0_redis_result_void_error_t;
 
 typedef struct {
+  bool is_some;
+  fermyon_spin_2_0_0_redis_payload_t val;
+} fermyon_spin_2_0_0_redis_option_payload_t;
+
+typedef struct {
   bool is_err;
   union {
-    http_trigger_option_payload_t ok;
+    fermyon_spin_2_0_0_redis_option_payload_t ok;
     fermyon_spin_2_0_0_redis_error_t err;
   } val;
 } fermyon_spin_2_0_0_redis_result_option_payload_error_t;
@@ -6553,12 +6588,12 @@ extern wasi_http_0_2_6_types_own_fields_t wasi_http_0_2_6_types_constructor_fiel
 // 
 // An error result will be returned if any `field-name` or `field-value` is
 // syntactically invalid, or if a field is forbidden.
-extern bool wasi_http_0_2_6_types_static_fields_from_list(http_trigger_list_tuple2_field_name_field_value_t *entries, wasi_http_0_2_6_types_own_fields_t *ret, wasi_http_0_2_6_types_header_error_t *err);
+extern bool wasi_http_0_2_6_types_static_fields_from_list(wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *entries, wasi_http_0_2_6_types_own_fields_t *ret, wasi_http_0_2_6_types_header_error_t *err);
 // Get all of the values corresponding to a name. If the name is not present
 // in this `fields` or is syntactically invalid, an empty list is returned.
 // However, if the name is present but empty, this is represented by a list
 // with one or more empty field-values present.
-extern void wasi_http_0_2_6_types_method_fields_get(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, http_trigger_list_field_value_t *ret);
+extern void wasi_http_0_2_6_types_method_fields_get(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, wasi_http_0_2_6_types_list_field_value_t *ret);
 // Returns `true` when the name is present in this `fields`. If the name is
 // syntactically invalid, `false` is returned.
 extern bool wasi_http_0_2_6_types_method_fields_has(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name);
@@ -6569,7 +6604,7 @@ extern bool wasi_http_0_2_6_types_method_fields_has(wasi_http_0_2_6_types_borrow
 // 
 // Fails with `header-error.invalid-syntax` if the `field-name` or any of
 // the `field-value`s are syntactically invalid.
-extern bool wasi_http_0_2_6_types_method_fields_set(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, http_trigger_list_field_value_t *value, wasi_http_0_2_6_types_header_error_t *err);
+extern bool wasi_http_0_2_6_types_method_fields_set(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, wasi_http_0_2_6_types_list_field_value_t *value, wasi_http_0_2_6_types_header_error_t *err);
 // Delete all values for a name. Does nothing if no values for the name
 // exist.
 // 
@@ -6595,7 +6630,7 @@ extern bool wasi_http_0_2_6_types_method_fields_append(wasi_http_0_2_6_types_bor
 // 
 // The names and values are always returned in the original casing and in
 // the order in which they will be serialized for transport.
-extern void wasi_http_0_2_6_types_method_fields_entries(wasi_http_0_2_6_types_borrow_fields_t self, http_trigger_list_tuple2_field_name_field_value_t *ret);
+extern void wasi_http_0_2_6_types_method_fields_entries(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *ret);
 // Make a deep copy of the Fields. Equivalent in behavior to calling the
 // `fields` constructor on the return value of `entries`. The resulting
 // `fields` is mutable.
@@ -6860,12 +6895,12 @@ extern wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t wasi_http_0_3_0_rc_2026_
 // An error result will be returned if any header or value was
 // syntactically invalid, if a header was forbidden, or if the
 // entries would exceed an implementation size limit.
-extern bool wasi_http_0_3_0_rc_2026_03_15_types_static_fields_from_list(http_trigger_list_tuple2_field_name_field_value_t *entries, wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
+extern bool wasi_http_0_3_0_rc_2026_03_15_types_static_fields_from_list(wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *entries, wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
 // Get all of the values corresponding to a name. If the name is not present
 // in this `fields`, an empty list is returned. However, if the name is
 // present but empty, this is represented by a list with one or more
 // empty field-values present.
-extern void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *ret);
+extern void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ret);
 // Returns `true` when the name is present in this `fields`. If the name is
 // syntactically invalid, `false` is returned.
 extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_has(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name);
@@ -6876,7 +6911,7 @@ extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_has(wasi_http_0_3_
 // 
 // Fails with `header-error.size-exceeded` if the name or values would
 // exceed an implementation-defined size limit.
-extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_set(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *value, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
+extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_set(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *value, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
 // Delete all values for a name. Does nothing if no values for the name
 // exist.
 // 
@@ -6888,7 +6923,7 @@ extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_delete(wasi_http_0
 // Returns all values previously corresponding to the name, if any.
 // 
 // Fails with `header-error.immutable` if the `fields` are immutable.
-extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get_and_delete(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
+extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get_and_delete(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err);
 // Append a value for a name. Does not change or delete any existing
 // values for that name.
 // 
@@ -6906,7 +6941,7 @@ extern bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_append(wasi_http_0
 // 
 // The names and values are always returned in the original casing and in
 // the order in which they will be serialized for transport.
-extern void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_copy_all(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, http_trigger_list_tuple2_field_name_field_value_t *ret);
+extern void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_copy_all(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *ret);
 // Make a deep copy of the Fields. Equivalent in behavior to calling the
 // `fields` constructor on the return value of `copy-all`. The resulting
 // `fields` is mutable.
@@ -9392,12 +9427,12 @@ extern wasi_http_0_2_0_types_own_fields_t wasi_http_0_2_0_types_constructor_fiel
 // 
 // An error result will be returned if any header or value was
 // syntactically invalid, or if a header was forbidden.
-extern bool wasi_http_0_2_0_types_static_fields_from_list(http_trigger_list_tuple2_field_key_field_value_t *entries, wasi_http_0_2_0_types_own_fields_t *ret, wasi_http_0_2_0_types_header_error_t *err);
+extern bool wasi_http_0_2_0_types_static_fields_from_list(wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *entries, wasi_http_0_2_0_types_own_fields_t *ret, wasi_http_0_2_0_types_header_error_t *err);
 // Get all of the values corresponding to a key. If the key is not present
 // in this `fields`, an empty list is returned. However, if the key is
 // present but empty, this is represented by a list with one or more
 // empty field-values present.
-extern void wasi_http_0_2_0_types_method_fields_get(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, http_trigger_list_field_value_t *ret);
+extern void wasi_http_0_2_0_types_method_fields_get(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, wasi_http_0_2_0_types_list_field_value_t *ret);
 // Returns `true` when the key is present in this `fields`. If the key is
 // syntactically invalid, `false` is returned.
 extern bool wasi_http_0_2_0_types_method_fields_has(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name);
@@ -9405,7 +9440,7 @@ extern bool wasi_http_0_2_0_types_method_fields_has(wasi_http_0_2_0_types_borrow
 // key, if they have been set.
 // 
 // Fails with `header-error.immutable` if the `fields` are immutable.
-extern bool wasi_http_0_2_0_types_method_fields_set(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, http_trigger_list_field_value_t *value, wasi_http_0_2_0_types_header_error_t *err);
+extern bool wasi_http_0_2_0_types_method_fields_set(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, wasi_http_0_2_0_types_list_field_value_t *value, wasi_http_0_2_0_types_header_error_t *err);
 // Delete all values for a key. Does nothing if no values for the key
 // exist.
 // 
@@ -9422,7 +9457,7 @@ extern bool wasi_http_0_2_0_types_method_fields_append(wasi_http_0_2_0_types_bor
 // The outer list represents each key-value pair in the Fields. Keys
 // which have multiple values are represented by multiple entries in this
 // list with the same key.
-extern void wasi_http_0_2_0_types_method_fields_entries(wasi_http_0_2_0_types_borrow_fields_t self, http_trigger_list_tuple2_field_key_field_value_t *ret);
+extern void wasi_http_0_2_0_types_method_fields_entries(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *ret);
 // Make a deep copy of the Fields. Equivelant in behavior to calling the
 // `fields` constructor on the return value of `entries`. The resulting
 // `fields` is mutable.
@@ -9678,7 +9713,7 @@ extern bool fermyon_spin_2_0_0_redis_static_connection_open(http_trigger_string_
 // Publish a Redis message to the specified channel.
 extern bool fermyon_spin_2_0_0_redis_method_connection_publish(fermyon_spin_2_0_0_redis_borrow_connection_t self, http_trigger_string_t *channel, fermyon_spin_2_0_0_redis_payload_t *payload, fermyon_spin_2_0_0_redis_error_t *err);
 // Get the value of a key.
-extern bool fermyon_spin_2_0_0_redis_method_connection_get(fermyon_spin_2_0_0_redis_borrow_connection_t self, http_trigger_string_t *key, http_trigger_option_payload_t *ret, fermyon_spin_2_0_0_redis_error_t *err);
+extern bool fermyon_spin_2_0_0_redis_method_connection_get(fermyon_spin_2_0_0_redis_borrow_connection_t self, http_trigger_string_t *key, fermyon_spin_2_0_0_redis_option_payload_t *ret, fermyon_spin_2_0_0_redis_error_t *err);
 // Set key to value.
 // 
 // If key already holds a value, it is overwritten.
@@ -10972,13 +11007,13 @@ extern wasi_http_0_2_6_types_borrow_future_incoming_response_t wasi_http_0_2_6_t
 
 void wasi_http_0_2_6_types_option_error_code_free(wasi_http_0_2_6_types_option_error_code_t *ptr);
 
-void http_trigger_tuple2_field_name_field_value_free(http_trigger_tuple2_field_name_field_value_t *ptr);
+void wasi_http_0_2_6_types_tuple2_field_name_field_value_free(wasi_http_0_2_6_types_tuple2_field_name_field_value_t *ptr);
 
-void http_trigger_list_tuple2_field_name_field_value_free(http_trigger_list_tuple2_field_name_field_value_t *ptr);
+void wasi_http_0_2_6_types_list_tuple2_field_name_field_value_free(wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *ptr);
 
 void wasi_http_0_2_6_types_result_own_fields_header_error_free(wasi_http_0_2_6_types_result_own_fields_header_error_t *ptr);
 
-void http_trigger_list_field_value_free(http_trigger_list_field_value_t *ptr);
+void wasi_http_0_2_6_types_list_field_value_free(wasi_http_0_2_6_types_list_field_value_t *ptr);
 
 void wasi_http_0_2_6_types_result_void_header_error_free(wasi_http_0_2_6_types_result_void_header_error_t *ptr);
 
@@ -10990,7 +11025,7 @@ void wasi_http_0_2_6_types_result_own_outgoing_body_void_free(wasi_http_0_2_6_ty
 
 void wasi_http_0_2_6_types_result_void_void_free(wasi_http_0_2_6_types_result_void_void_t *ptr);
 
-void http_trigger_option_duration_free(http_trigger_option_duration_t *ptr);
+void wasi_http_0_2_6_types_option_duration_free(wasi_http_0_2_6_types_option_duration_t *ptr);
 
 void wasi_http_0_2_6_types_result_own_outgoing_response_error_code_free(wasi_http_0_2_6_types_result_own_outgoing_response_error_code_t *ptr);
 
@@ -11060,7 +11095,13 @@ extern void wasi_http_0_3_0_rc_2026_03_15_types_response_drop_borrow(wasi_http_0
 
 extern wasi_http_0_3_0_rc_2026_03_15_types_borrow_response_t wasi_http_0_3_0_rc_2026_03_15_types_borrow_response(wasi_http_0_3_0_rc_2026_03_15_types_own_response_t handle);
 
+void wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t *ptr);
+
+void wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *ptr);
+
 void wasi_http_0_3_0_rc_2026_03_15_types_result_own_fields_header_error_free(wasi_http_0_3_0_rc_2026_03_15_types_result_own_fields_header_error_t *ptr);
+
+void wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ptr);
 
 void wasi_http_0_3_0_rc_2026_03_15_types_result_void_header_error_free(wasi_http_0_3_0_rc_2026_03_15_types_result_void_header_error_t *ptr);
 
@@ -11079,6 +11120,8 @@ void wasi_http_0_3_0_rc_2026_03_15_types_result_void_error_code_free(wasi_http_0
 void wasi_http_0_3_0_rc_2026_03_15_types_result_void_void_free(wasi_http_0_3_0_rc_2026_03_15_types_result_void_void_t *ptr);
 
 void wasi_http_0_3_0_rc_2026_03_15_types_option_scheme_free(wasi_http_0_3_0_rc_2026_03_15_types_option_scheme_t *ptr);
+
+void wasi_http_0_3_0_rc_2026_03_15_types_option_duration_free(wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t *ptr);
 
 void wasi_http_0_3_0_rc_2026_03_15_types_result_void_request_options_error_free(wasi_http_0_3_0_rc_2026_03_15_types_result_void_request_options_error_t *ptr);
 
@@ -11369,7 +11412,7 @@ void spin_redis_redis_result_own_connection_error_free(spin_redis_redis_result_o
 
 void spin_redis_redis_result_void_error_free(spin_redis_redis_result_void_error_t *ptr);
 
-void http_trigger_option_payload_free(http_trigger_option_payload_t *ptr);
+void spin_redis_redis_option_payload_free(spin_redis_redis_option_payload_t *ptr);
 
 void spin_redis_redis_result_option_payload_error_free(spin_redis_redis_result_option_payload_error_t *ptr);
 
@@ -11955,11 +11998,13 @@ extern wasi_http_0_2_0_types_borrow_future_incoming_response_t wasi_http_0_2_0_t
 
 void wasi_http_0_2_0_types_option_error_code_free(wasi_http_0_2_0_types_option_error_code_t *ptr);
 
-void http_trigger_tuple2_field_key_field_value_free(http_trigger_tuple2_field_key_field_value_t *ptr);
+void wasi_http_0_2_0_types_tuple2_field_key_field_value_free(wasi_http_0_2_0_types_tuple2_field_key_field_value_t *ptr);
 
-void http_trigger_list_tuple2_field_key_field_value_free(http_trigger_list_tuple2_field_key_field_value_t *ptr);
+void wasi_http_0_2_0_types_list_tuple2_field_key_field_value_free(wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *ptr);
 
 void wasi_http_0_2_0_types_result_own_fields_header_error_free(wasi_http_0_2_0_types_result_own_fields_header_error_t *ptr);
+
+void wasi_http_0_2_0_types_list_field_value_free(wasi_http_0_2_0_types_list_field_value_t *ptr);
 
 void wasi_http_0_2_0_types_result_void_header_error_free(wasi_http_0_2_0_types_result_void_header_error_t *ptr);
 
@@ -11970,6 +12015,8 @@ void wasi_http_0_2_0_types_result_own_incoming_body_void_free(wasi_http_0_2_0_ty
 void wasi_http_0_2_0_types_result_own_outgoing_body_void_free(wasi_http_0_2_0_types_result_own_outgoing_body_void_t *ptr);
 
 void wasi_http_0_2_0_types_result_void_void_free(wasi_http_0_2_0_types_result_void_void_t *ptr);
+
+void wasi_http_0_2_0_types_option_duration_free(wasi_http_0_2_0_types_option_duration_t *ptr);
 
 void wasi_http_0_2_0_types_result_own_outgoing_response_error_code_free(wasi_http_0_2_0_types_result_own_outgoing_response_error_code_t *ptr);
 
@@ -12036,6 +12083,8 @@ void fermyon_spin_2_0_0_redis_redis_result_free(fermyon_spin_2_0_0_redis_redis_r
 void fermyon_spin_2_0_0_redis_result_own_connection_error_free(fermyon_spin_2_0_0_redis_result_own_connection_error_t *ptr);
 
 void fermyon_spin_2_0_0_redis_result_void_error_free(fermyon_spin_2_0_0_redis_result_void_error_t *ptr);
+
+void fermyon_spin_2_0_0_redis_option_payload_free(fermyon_spin_2_0_0_redis_option_payload_t *ptr);
 
 void fermyon_spin_2_0_0_redis_result_option_payload_error_free(fermyon_spin_2_0_0_redis_result_option_payload_error_t *ptr);
 

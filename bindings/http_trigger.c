@@ -2322,17 +2322,17 @@ void wasi_http_0_2_6_types_option_error_code_free(wasi_http_0_2_6_types_option_e
   }
 }
 
-void http_trigger_tuple2_field_name_field_value_free(http_trigger_tuple2_field_name_field_value_t *ptr) {
+void wasi_http_0_2_6_types_tuple2_field_name_field_value_free(wasi_http_0_2_6_types_tuple2_field_name_field_value_t *ptr) {
   wasi_http_0_2_6_types_field_name_free(&ptr->f0);
   wasi_http_0_2_6_types_field_value_free(&ptr->f1);
 }
 
-void http_trigger_list_tuple2_field_name_field_value_free(http_trigger_list_tuple2_field_name_field_value_t *ptr) {
+void wasi_http_0_2_6_types_list_tuple2_field_name_field_value_free(wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *ptr) {
   size_t list_len = ptr->len;
   if (list_len > 0) {
-    http_trigger_tuple2_field_name_field_value_t *list_ptr = ptr->ptr;
+    wasi_http_0_2_6_types_tuple2_field_name_field_value_t *list_ptr = ptr->ptr;
     for (size_t i = 0; i < list_len; i++) {
-      http_trigger_tuple2_field_name_field_value_free(&list_ptr[i]);
+      wasi_http_0_2_6_types_tuple2_field_name_field_value_free(&list_ptr[i]);
     }
     free(list_ptr);
   }
@@ -2345,7 +2345,7 @@ void wasi_http_0_2_6_types_result_own_fields_header_error_free(wasi_http_0_2_6_t
   }
 }
 
-void http_trigger_list_field_value_free(http_trigger_list_field_value_t *ptr) {
+void wasi_http_0_2_6_types_list_field_value_free(wasi_http_0_2_6_types_list_field_value_t *ptr) {
   size_t list_len = ptr->len;
   if (list_len > 0) {
     wasi_http_0_2_6_types_field_value_t *list_ptr = ptr->ptr;
@@ -2384,7 +2384,7 @@ void wasi_http_0_2_6_types_result_void_void_free(wasi_http_0_2_6_types_result_vo
   }
 }
 
-void http_trigger_option_duration_free(http_trigger_option_duration_t *ptr) {
+void wasi_http_0_2_6_types_option_duration_free(wasi_http_0_2_6_types_option_duration_t *ptr) {
   if (ptr->is_some) {
   }
 }
@@ -2637,10 +2637,37 @@ wasi_http_0_3_0_rc_2026_03_15_types_borrow_response_t wasi_http_0_3_0_rc_2026_03
   return (wasi_http_0_3_0_rc_2026_03_15_types_borrow_response_t) { arg.__handle };
 }
 
+void wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t *ptr) {
+  wasi_http_0_3_0_rc_2026_03_15_types_field_name_free(&ptr->f0);
+  wasi_http_0_3_0_rc_2026_03_15_types_field_value_free(&ptr->f1);
+}
+
+void wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *ptr) {
+  size_t list_len = ptr->len;
+  if (list_len > 0) {
+    wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t *list_ptr = ptr->ptr;
+    for (size_t i = 0; i < list_len; i++) {
+      wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_free(&list_ptr[i]);
+    }
+    free(list_ptr);
+  }
+}
+
 void wasi_http_0_3_0_rc_2026_03_15_types_result_own_fields_header_error_free(wasi_http_0_3_0_rc_2026_03_15_types_result_own_fields_header_error_t *ptr) {
   if (!ptr->is_err) {
   } else {
     wasi_http_0_3_0_rc_2026_03_15_types_header_error_free(&ptr->val.err);
+  }
+}
+
+void wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_free(wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ptr) {
+  size_t list_len = ptr->len;
+  if (list_len > 0) {
+    wasi_http_0_3_0_rc_2026_03_15_types_field_value_t *list_ptr = ptr->ptr;
+    for (size_t i = 0; i < list_len; i++) {
+      wasi_http_0_3_0_rc_2026_03_15_types_field_value_free(&list_ptr[i]);
+    }
+    free(list_ptr);
   }
 }
 
@@ -2653,6 +2680,7 @@ void wasi_http_0_3_0_rc_2026_03_15_types_result_void_header_error_free(wasi_http
 
 void wasi_http_0_3_0_rc_2026_03_15_types_result_list_field_value_header_error_free(wasi_http_0_3_0_rc_2026_03_15_types_result_list_field_value_header_error_t *ptr) {
   if (!ptr->is_err) {
+    wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_free(&ptr->val.ok);
   } else {
     wasi_http_0_3_0_rc_2026_03_15_types_header_error_free(&ptr->val.err);
   }
@@ -2696,6 +2724,11 @@ void wasi_http_0_3_0_rc_2026_03_15_types_result_void_void_free(wasi_http_0_3_0_r
 void wasi_http_0_3_0_rc_2026_03_15_types_option_scheme_free(wasi_http_0_3_0_rc_2026_03_15_types_option_scheme_t *ptr) {
   if (ptr->is_some) {
     wasi_http_0_3_0_rc_2026_03_15_types_scheme_free(&ptr->val);
+  }
+}
+
+void wasi_http_0_3_0_rc_2026_03_15_types_option_duration_free(wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t *ptr) {
+  if (ptr->is_some) {
   }
 }
 
@@ -4165,7 +4198,7 @@ void spin_redis_redis_result_void_error_free(spin_redis_redis_result_void_error_
   }
 }
 
-void http_trigger_option_payload_free(http_trigger_option_payload_t *ptr) {
+void spin_redis_redis_option_payload_free(spin_redis_redis_option_payload_t *ptr) {
   if (ptr->is_some) {
     spin_redis_redis_payload_free(&ptr->val);
   }
@@ -4173,7 +4206,7 @@ void http_trigger_option_payload_free(http_trigger_option_payload_t *ptr) {
 
 void spin_redis_redis_result_option_payload_error_free(spin_redis_redis_result_option_payload_error_t *ptr) {
   if (!ptr->is_err) {
-    http_trigger_option_payload_free(&ptr->val.ok);
+    spin_redis_redis_option_payload_free(&ptr->val.ok);
   } else {
     spin_redis_redis_error_free(&ptr->val.err);
   }
@@ -6179,17 +6212,17 @@ void wasi_http_0_2_0_types_option_error_code_free(wasi_http_0_2_0_types_option_e
   }
 }
 
-void http_trigger_tuple2_field_key_field_value_free(http_trigger_tuple2_field_key_field_value_t *ptr) {
+void wasi_http_0_2_0_types_tuple2_field_key_field_value_free(wasi_http_0_2_0_types_tuple2_field_key_field_value_t *ptr) {
   wasi_http_0_2_0_types_field_key_free(&ptr->f0);
   wasi_http_0_2_0_types_field_value_free(&ptr->f1);
 }
 
-void http_trigger_list_tuple2_field_key_field_value_free(http_trigger_list_tuple2_field_key_field_value_t *ptr) {
+void wasi_http_0_2_0_types_list_tuple2_field_key_field_value_free(wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *ptr) {
   size_t list_len = ptr->len;
   if (list_len > 0) {
-    http_trigger_tuple2_field_key_field_value_t *list_ptr = ptr->ptr;
+    wasi_http_0_2_0_types_tuple2_field_key_field_value_t *list_ptr = ptr->ptr;
     for (size_t i = 0; i < list_len; i++) {
-      http_trigger_tuple2_field_key_field_value_free(&list_ptr[i]);
+      wasi_http_0_2_0_types_tuple2_field_key_field_value_free(&list_ptr[i]);
     }
     free(list_ptr);
   }
@@ -6199,6 +6232,17 @@ void wasi_http_0_2_0_types_result_own_fields_header_error_free(wasi_http_0_2_0_t
   if (!ptr->is_err) {
   } else {
     wasi_http_0_2_0_types_header_error_free(&ptr->val.err);
+  }
+}
+
+void wasi_http_0_2_0_types_list_field_value_free(wasi_http_0_2_0_types_list_field_value_t *ptr) {
+  size_t list_len = ptr->len;
+  if (list_len > 0) {
+    wasi_http_0_2_0_types_field_value_t *list_ptr = ptr->ptr;
+    for (size_t i = 0; i < list_len; i++) {
+      wasi_http_0_2_0_types_field_value_free(&list_ptr[i]);
+    }
+    free(list_ptr);
   }
 }
 
@@ -6227,6 +6271,11 @@ void wasi_http_0_2_0_types_result_own_outgoing_body_void_free(wasi_http_0_2_0_ty
 
 void wasi_http_0_2_0_types_result_void_void_free(wasi_http_0_2_0_types_result_void_void_t *ptr) {
   if (!ptr->is_err) {
+  }
+}
+
+void wasi_http_0_2_0_types_option_duration_free(wasi_http_0_2_0_types_option_duration_t *ptr) {
+  if (ptr->is_some) {
   }
 }
 
@@ -6461,8 +6510,15 @@ void fermyon_spin_2_0_0_redis_result_void_error_free(fermyon_spin_2_0_0_redis_re
   }
 }
 
+void fermyon_spin_2_0_0_redis_option_payload_free(fermyon_spin_2_0_0_redis_option_payload_t *ptr) {
+  if (ptr->is_some) {
+    fermyon_spin_2_0_0_redis_payload_free(&ptr->val);
+  }
+}
+
 void fermyon_spin_2_0_0_redis_result_option_payload_error_free(fermyon_spin_2_0_0_redis_result_option_payload_error_t *ptr) {
   if (!ptr->is_err) {
+    fermyon_spin_2_0_0_redis_option_payload_free(&ptr->val.ok);
   } else {
     fermyon_spin_2_0_0_redis_error_free(&ptr->val.err);
   }
@@ -9531,7 +9587,7 @@ wasi_http_0_2_6_types_own_fields_t wasi_http_0_2_6_types_constructor_fields(void
   return (wasi_http_0_2_6_types_own_fields_t) { ret };
 }
 
-bool wasi_http_0_2_6_types_static_fields_from_list(http_trigger_list_tuple2_field_name_field_value_t *entries, wasi_http_0_2_6_types_own_fields_t *ret, wasi_http_0_2_6_types_header_error_t *err) {
+bool wasi_http_0_2_6_types_static_fields_from_list(wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *entries, wasi_http_0_2_6_types_own_fields_t *ret, wasi_http_0_2_6_types_header_error_t *err) {
   __attribute__((__aligned__(4)))
   uint8_t ret_area[8];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -9572,12 +9628,12 @@ bool wasi_http_0_2_6_types_static_fields_from_list(http_trigger_list_tuple2_fiel
   }
 }
 
-void wasi_http_0_2_6_types_method_fields_get(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, http_trigger_list_field_value_t *ret) {
+void wasi_http_0_2_6_types_method_fields_get(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, wasi_http_0_2_6_types_list_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_6_types_method_fields_get((self).__handle, (uint8_t *) (*name).ptr, (*name).len, ptr);
-  *ret = (http_trigger_list_field_value_t) { (wasi_http_0_2_6_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_2_6_types_list_field_value_t) { (wasi_http_0_2_6_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 bool wasi_http_0_2_6_types_method_fields_has(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name) {
@@ -9585,7 +9641,7 @@ bool wasi_http_0_2_6_types_method_fields_has(wasi_http_0_2_6_types_borrow_fields
   return ret;
 }
 
-bool wasi_http_0_2_6_types_method_fields_set(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, http_trigger_list_field_value_t *value, wasi_http_0_2_6_types_header_error_t *err) {
+bool wasi_http_0_2_6_types_method_fields_set(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_field_name_t *name, wasi_http_0_2_6_types_list_field_value_t *value, wasi_http_0_2_6_types_header_error_t *err) {
   __attribute__((__aligned__(1)))
   uint8_t ret_area[2];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -9702,12 +9758,12 @@ bool wasi_http_0_2_6_types_method_fields_append(wasi_http_0_2_6_types_borrow_fie
   }
 }
 
-void wasi_http_0_2_6_types_method_fields_entries(wasi_http_0_2_6_types_borrow_fields_t self, http_trigger_list_tuple2_field_name_field_value_t *ret) {
+void wasi_http_0_2_6_types_method_fields_entries(wasi_http_0_2_6_types_borrow_fields_t self, wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_6_types_method_fields_entries((self).__handle, ptr);
-  *ret = (http_trigger_list_tuple2_field_name_field_value_t) { (http_trigger_tuple2_field_name_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_2_6_types_list_tuple2_field_name_field_value_t) { (wasi_http_0_2_6_types_tuple2_field_name_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 wasi_http_0_2_6_types_own_fields_t wasi_http_0_2_6_types_method_fields_clone(wasi_http_0_2_6_types_borrow_fields_t self) {
@@ -10256,7 +10312,7 @@ bool wasi_http_0_2_6_types_method_request_options_connect_timeout(wasi_http_0_2_
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_6_types_method_request_options_connect_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_6_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -10273,7 +10329,7 @@ bool wasi_http_0_2_6_types_method_request_options_connect_timeout(wasi_http_0_2_
 }
 
 bool wasi_http_0_2_6_types_method_request_options_set_connect_timeout(wasi_http_0_2_6_types_borrow_request_options_t self, wasi_http_0_2_6_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_6_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -10311,7 +10367,7 @@ bool wasi_http_0_2_6_types_method_request_options_first_byte_timeout(wasi_http_0
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_6_types_method_request_options_first_byte_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_6_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -10328,7 +10384,7 @@ bool wasi_http_0_2_6_types_method_request_options_first_byte_timeout(wasi_http_0
 }
 
 bool wasi_http_0_2_6_types_method_request_options_set_first_byte_timeout(wasi_http_0_2_6_types_borrow_request_options_t self, wasi_http_0_2_6_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_6_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -10366,7 +10422,7 @@ bool wasi_http_0_2_6_types_method_request_options_between_bytes_timeout(wasi_htt
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_6_types_method_request_options_between_bytes_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_6_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -10383,7 +10439,7 @@ bool wasi_http_0_2_6_types_method_request_options_between_bytes_timeout(wasi_htt
 }
 
 bool wasi_http_0_2_6_types_method_request_options_set_between_bytes_timeout(wasi_http_0_2_6_types_borrow_request_options_t self, wasi_http_0_2_6_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_6_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -13154,7 +13210,7 @@ wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t wasi_http_0_3_0_rc_2026_03_15_t
   return (wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t) { ret };
 }
 
-bool wasi_http_0_3_0_rc_2026_03_15_types_static_fields_from_list(http_trigger_list_tuple2_field_name_field_value_t *entries, wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
+bool wasi_http_0_3_0_rc_2026_03_15_types_static_fields_from_list(wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *entries, wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -13214,12 +13270,12 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_static_fields_from_list(http_trigger_li
   }
 }
 
-void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *ret) {
+void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get((self).__handle, (uint8_t *) (*name).ptr, (*name).len, ptr);
-  *ret = (http_trigger_list_field_value_t) { (wasi_http_0_3_0_rc_2026_03_15_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t) { (wasi_http_0_3_0_rc_2026_03_15_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_has(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name) {
@@ -13227,7 +13283,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_has(wasi_http_0_3_0_rc_20
   return ret;
 }
 
-bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_set(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *value, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
+bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_set(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *value, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -13343,7 +13399,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_delete(wasi_http_0_3_0_rc
   }
 }
 
-bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get_and_delete(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, http_trigger_list_field_value_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
+bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get_and_delete(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_field_name_t *name, wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t *ret, wasi_http_0_3_0_rc_2026_03_15_types_header_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -13352,7 +13408,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_get_and_delete(wasi_http_
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       result.is_err = false;
-      result.val.ok = (http_trigger_list_field_value_t) { (wasi_http_0_3_0_rc_2026_03_15_types_field_value_t*)(*((uint8_t **) (ptr + sizeof(void*)))), (*((size_t*) (ptr + (2*sizeof(void*))))) };
+      result.val.ok = (wasi_http_0_3_0_rc_2026_03_15_types_list_field_value_t) { (wasi_http_0_3_0_rc_2026_03_15_types_field_value_t*)(*((uint8_t **) (ptr + sizeof(void*)))), (*((size_t*) (ptr + (2*sizeof(void*))))) };
       break;
     }
     case 1: {
@@ -13461,12 +13517,12 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_fields_append(wasi_http_0_3_0_rc
   }
 }
 
-void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_copy_all(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, http_trigger_list_tuple2_field_name_field_value_t *ret) {
+void wasi_http_0_3_0_rc_2026_03_15_types_method_fields_copy_all(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self, wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_3_0_rc_2026_03_15_types_method_fields_copy_all((self).__handle, ptr);
-  *ret = (http_trigger_list_tuple2_field_name_field_value_t) { (http_trigger_tuple2_field_name_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_3_0_rc_2026_03_15_types_list_tuple2_field_name_field_value_t) { (wasi_http_0_3_0_rc_2026_03_15_types_tuple2_field_name_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 wasi_http_0_3_0_rc_2026_03_15_types_own_fields_t wasi_http_0_3_0_rc_2026_03_15_types_method_fields_clone(wasi_http_0_3_0_rc_2026_03_15_types_borrow_fields_t self) {
@@ -13905,7 +13961,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_connect_time
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_connect_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -13924,7 +13980,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_connect_time
 bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_set_connect_timeout(wasi_http_0_3_0_rc_2026_03_15_types_borrow_request_options_t self, wasi_http_0_3_0_rc_2026_03_15_types_duration_t *maybe_duration, wasi_http_0_3_0_rc_2026_03_15_types_request_options_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
-  http_trigger_option_duration_t duration;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -13992,7 +14048,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_first_byte_t
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_first_byte_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -14011,7 +14067,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_first_byte_t
 bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_set_first_byte_timeout(wasi_http_0_3_0_rc_2026_03_15_types_borrow_request_options_t self, wasi_http_0_3_0_rc_2026_03_15_types_duration_t *maybe_duration, wasi_http_0_3_0_rc_2026_03_15_types_request_options_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
-  http_trigger_option_duration_t duration;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -14079,7 +14135,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_between_byte
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_between_bytes_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -14098,7 +14154,7 @@ bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_get_between_byte
 bool wasi_http_0_3_0_rc_2026_03_15_types_method_request_options_set_between_bytes_timeout(wasi_http_0_3_0_rc_2026_03_15_types_borrow_request_options_t self, wasi_http_0_3_0_rc_2026_03_15_types_duration_t *maybe_duration, wasi_http_0_3_0_rc_2026_03_15_types_request_options_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(5*sizeof(void*))];
-  http_trigger_option_duration_t duration;
+  wasi_http_0_3_0_rc_2026_03_15_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -22374,7 +22430,7 @@ wasi_http_0_2_0_types_own_fields_t wasi_http_0_2_0_types_constructor_fields(void
   return (wasi_http_0_2_0_types_own_fields_t) { ret };
 }
 
-bool wasi_http_0_2_0_types_static_fields_from_list(http_trigger_list_tuple2_field_key_field_value_t *entries, wasi_http_0_2_0_types_own_fields_t *ret, wasi_http_0_2_0_types_header_error_t *err) {
+bool wasi_http_0_2_0_types_static_fields_from_list(wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *entries, wasi_http_0_2_0_types_own_fields_t *ret, wasi_http_0_2_0_types_header_error_t *err) {
   __attribute__((__aligned__(4)))
   uint8_t ret_area[8];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -22415,12 +22471,12 @@ bool wasi_http_0_2_0_types_static_fields_from_list(http_trigger_list_tuple2_fiel
   }
 }
 
-void wasi_http_0_2_0_types_method_fields_get(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, http_trigger_list_field_value_t *ret) {
+void wasi_http_0_2_0_types_method_fields_get(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, wasi_http_0_2_0_types_list_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_0_types_method_fields_get((self).__handle, (uint8_t *) (*name).ptr, (*name).len, ptr);
-  *ret = (http_trigger_list_field_value_t) { (wasi_http_0_2_0_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_2_0_types_list_field_value_t) { (wasi_http_0_2_0_types_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 bool wasi_http_0_2_0_types_method_fields_has(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name) {
@@ -22428,7 +22484,7 @@ bool wasi_http_0_2_0_types_method_fields_has(wasi_http_0_2_0_types_borrow_fields
   return ret;
 }
 
-bool wasi_http_0_2_0_types_method_fields_set(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, http_trigger_list_field_value_t *value, wasi_http_0_2_0_types_header_error_t *err) {
+bool wasi_http_0_2_0_types_method_fields_set(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_field_key_t *name, wasi_http_0_2_0_types_list_field_value_t *value, wasi_http_0_2_0_types_header_error_t *err) {
   __attribute__((__aligned__(1)))
   uint8_t ret_area[2];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -22545,12 +22601,12 @@ bool wasi_http_0_2_0_types_method_fields_append(wasi_http_0_2_0_types_borrow_fie
   }
 }
 
-void wasi_http_0_2_0_types_method_fields_entries(wasi_http_0_2_0_types_borrow_fields_t self, http_trigger_list_tuple2_field_key_field_value_t *ret) {
+void wasi_http_0_2_0_types_method_fields_entries(wasi_http_0_2_0_types_borrow_fields_t self, wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t *ret) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(2*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_0_types_method_fields_entries((self).__handle, ptr);
-  *ret = (http_trigger_list_tuple2_field_key_field_value_t) { (http_trigger_tuple2_field_key_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
+  *ret = (wasi_http_0_2_0_types_list_tuple2_field_key_field_value_t) { (wasi_http_0_2_0_types_tuple2_field_key_field_value_t*)(*((uint8_t **) (ptr + 0))), (*((size_t*) (ptr + sizeof(void*)))) };
 }
 
 wasi_http_0_2_0_types_own_fields_t wasi_http_0_2_0_types_method_fields_clone(wasi_http_0_2_0_types_borrow_fields_t self) {
@@ -23099,7 +23155,7 @@ bool wasi_http_0_2_0_types_method_request_options_connect_timeout(wasi_http_0_2_
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_0_types_method_request_options_connect_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_0_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -23116,7 +23172,7 @@ bool wasi_http_0_2_0_types_method_request_options_connect_timeout(wasi_http_0_2_
 }
 
 bool wasi_http_0_2_0_types_method_request_options_set_connect_timeout(wasi_http_0_2_0_types_borrow_request_options_t self, wasi_http_0_2_0_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_0_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -23154,7 +23210,7 @@ bool wasi_http_0_2_0_types_method_request_options_first_byte_timeout(wasi_http_0
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_0_types_method_request_options_first_byte_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_0_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -23171,7 +23227,7 @@ bool wasi_http_0_2_0_types_method_request_options_first_byte_timeout(wasi_http_0
 }
 
 bool wasi_http_0_2_0_types_method_request_options_set_first_byte_timeout(wasi_http_0_2_0_types_borrow_request_options_t self, wasi_http_0_2_0_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_0_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -23209,7 +23265,7 @@ bool wasi_http_0_2_0_types_method_request_options_between_bytes_timeout(wasi_htt
   uint8_t ret_area[16];
   uint8_t *ptr = (uint8_t *) &ret_area;
   __wasm_import_wasi_http_0_2_0_types_method_request_options_between_bytes_timeout((self).__handle, ptr);
-  http_trigger_option_duration_t option;
+  wasi_http_0_2_0_types_option_duration_t option;
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       option.is_some = false;
@@ -23226,7 +23282,7 @@ bool wasi_http_0_2_0_types_method_request_options_between_bytes_timeout(wasi_htt
 }
 
 bool wasi_http_0_2_0_types_method_request_options_set_between_bytes_timeout(wasi_http_0_2_0_types_borrow_request_options_t self, wasi_http_0_2_0_types_duration_t *maybe_duration) {
-  http_trigger_option_duration_t duration;
+  wasi_http_0_2_0_types_option_duration_t duration;
   duration.is_some = maybe_duration != NULL;if (maybe_duration) {
     duration.val = *maybe_duration;
   }
@@ -26206,7 +26262,7 @@ bool fermyon_spin_2_0_0_redis_method_connection_publish(fermyon_spin_2_0_0_redis
   }
 }
 
-bool fermyon_spin_2_0_0_redis_method_connection_get(fermyon_spin_2_0_0_redis_borrow_connection_t self, http_trigger_string_t *key, http_trigger_option_payload_t *ret, fermyon_spin_2_0_0_redis_error_t *err) {
+bool fermyon_spin_2_0_0_redis_method_connection_get(fermyon_spin_2_0_0_redis_borrow_connection_t self, http_trigger_string_t *key, fermyon_spin_2_0_0_redis_option_payload_t *ret, fermyon_spin_2_0_0_redis_error_t *err) {
   __attribute__((__aligned__(sizeof(void*))))
   uint8_t ret_area[(4*sizeof(void*))];
   uint8_t *ptr = (uint8_t *) &ret_area;
@@ -26215,7 +26271,7 @@ bool fermyon_spin_2_0_0_redis_method_connection_get(fermyon_spin_2_0_0_redis_bor
   switch ((int32_t) *((uint8_t*) (ptr + 0))) {
     case 0: {
       result.is_err = false;
-      http_trigger_option_payload_t option;
+      fermyon_spin_2_0_0_redis_option_payload_t option;
       switch ((int32_t) *((uint8_t*) (ptr + sizeof(void*)))) {
         case 0: {
           option.is_some = false;
