@@ -80,66 +80,73 @@ http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handl
     return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
 }
 
+void set_timer(struct respond_task* task) {
+    wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_duration_t how_long = 1 * 1000 * 1000 * 1000;  // 1 sec
+    http_trigger_subtask_status_t delay_st = wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_wait_for(how_long);
+    http_trigger_subtask_t delay_task = HTTP_TRIGGER_SUBTASK_HANDLE(delay_st);
+    task->set = http_trigger_waitable_set_new();
+    http_trigger_waitable_join(delay_task, task->set);
+    task->state = RT_STATE_WAITING_FOR_TIMER;
+}
+
+void end_response_task(struct respond_task* task) {
+    wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_drop_writable(task->body_writer);
+
+    http_trigger_waitable_set_drop(task->set);
+    task->set = 0;
+
+    free(task);
+}
+
 http_trigger_callback_code_t exports_wasi_http_0_3_0_rc_2026_03_15_handler_handle_callback(http_trigger_event_t *event) {
     struct respond_task *task = (struct respond_task*) http_trigger_context_get_0();
 
     printf("in callback\n");
     fflush(stdout);
 
-    if (task->state == RT_STATE_WAITING_FOR_WRITE) {
-        ++task->count;
-
-        if (task->count >= 5) {
-            printf("writed, DONEBURGER\n");
-            fflush(stdout);
-
-            wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_drop_writable(task->body_writer);
-
-            http_trigger_waitable_set_drop(task->set);
-            task->set = 0;
-
-            free(task);
-
-            return HTTP_TRIGGER_CALLBACK_CODE_EXIT;
-        }
-
-        printf("writed, setting timer\n");
+    if (task->count >= 5) {
+        printf("done 5: exiting\n");
         fflush(stdout);
 
-        wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_duration_t how_long = 1 * 1000 * 1000 * 1000;  // 1 sec
-        http_trigger_subtask_status_t delay_st = wasi_clocks_0_3_0_rc_2026_03_15_monotonic_clock_wait_for(how_long);
-        http_trigger_subtask_t delay_task = HTTP_TRIGGER_SUBTASK_HANDLE(delay_st);
-        task->set = http_trigger_waitable_set_new();
-        http_trigger_waitable_join(delay_task, task->set);
-        task->state = RT_STATE_WAITING_FOR_TIMER;
+        end_response_task(task);
+        return HTTP_TRIGGER_CALLBACK_CODE_EXIT;
+    }
 
-        // okay this seems to block on the waitable set but I dunno if that's what we want
-        // the issue we have is more that write completion doesn't bring us back to the timer
-        //
-        // although I guess with this and a similar thing on the writer perhaps we can alternate
-        // between them which is a bit of a fiddle but maybe acceptable for this learning
-        //
-        // printf("waitable_set_wait...\n");
-        // fflush(stdout);
-        // http_trigger_event_t evt;
-        // http_trigger_waitable_set_wait(task->set, &evt);
-        // printf("...retd\n");
-        // fflush(stdout);
+    if (task->state == RT_STATE_WAITING_FOR_WRITE) {
+        printf("pending write completed, setting timer\n");
+        fflush(stdout);
 
-        // http_trigger_context_set_0(task);
+        set_timer(task);
 
-        printf("waity time T\n");
+        printf("waiting for timer...\n");
         fflush(stdout);
 
         return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
     } else {
         // task->state == RT_STATE_WAITING_FOR_TIMER
-        printf("timered, writing\n");
+        printf("timer expires, writing\n");
         fflush(stdout);
 
         http_trigger_string_t body_text;
         http_trigger_string_set(&body_text, "HELLO AGAIN!!!\n");
         http_trigger_waitable_status_t st = wasi_http_0_3_0_rc_2026_03_15_types_stream_u8_write(task->body_writer, body_text.ptr, body_text.len);
+        ++task->count;
+
+        if (HTTP_TRIGGER_WAITABLE_STATE(st) == HTTP_TRIGGER_WAITABLE_COMPLETED) {
+            // go back and do the timer thing immediately
+            printf("insta-complete, setting timer\n");
+            fflush(stdout);
+            set_timer(task);
+            return HTTP_TRIGGER_CALLBACK_CODE_WAIT(task->set);
+        } else if (HTTP_TRIGGER_WAITABLE_STATE(st) == HTTP_TRIGGER_WAITABLE_CANCELLED) {
+            // drop and exit
+            end_response_task(task);
+            return HTTP_TRIGGER_CALLBACK_CODE_EXIT;
+        }
+
+        // Pending
+        printf("write pending, waiting for write\n");
+        fflush(stdout);
         task->set = http_trigger_waitable_set_new();
         http_trigger_waitable_join(task->body_writer, task->set); // passing `st` results in instant completion so it's not that
         task->state = RT_STATE_WAITING_FOR_WRITE;
